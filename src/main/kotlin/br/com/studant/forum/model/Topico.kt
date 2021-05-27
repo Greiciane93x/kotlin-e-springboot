@@ -2,7 +2,7 @@ package br.com.studant.forum.model
 import  java.time.LocalDateTime
 
  data class Topico(
-    val id : Long,
+    var id : Long? = null,
     val titulo : String,
     val mensagem: String,
     val curso: Curso,

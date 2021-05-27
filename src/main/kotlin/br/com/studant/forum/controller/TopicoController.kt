@@ -8,7 +8,7 @@ import br.com.studant.forum.model.Topico
 import br.com.studant.forum.model.Usuario
 import br.com.studant.forum.service.TopicoService
 import org.springframework.web.bind.annotation.*
-import java.util.*
+import javax.validation.Valid
 
 @RestController
 @RequestMapping(value = ["/topicos"])
@@ -25,7 +25,7 @@ class TopicoController(private val service: TopicoService) {
     }
 
     @PostMapping
-    fun cadastrar(@RequestBody dto: NovoTopicoForm){
+    fun cadastrar(@RequestBody @Valid dto: NovoTopicoForm){
         service.cadastrar(dto)
     }
 
