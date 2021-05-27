@@ -9,3 +9,4 @@ class ForumApplication
 fun main(args: Array<String>) {
 	runApplication<ForumApplication>(*args)
 }
+ 

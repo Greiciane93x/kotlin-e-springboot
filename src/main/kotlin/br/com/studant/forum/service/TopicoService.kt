@@ -1,15 +1,16 @@
 package br.com.studant.forum.service
 
-import br.com.studant.forum.model.Curso
+import br.com.studant.forum.dto.NovoTopicoDto
 import br.com.studant.forum.model.Topico
-import br.com.studant.forum.model.Usuario
 import org.springframework.stereotype.Service
 import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestBody
 import java.util.*
 
 @Service
-class TopicoService (private var topicos: List<Topico> = ArrayList()){
+class TopicoService (private var topicos: List<Topico> = ArrayList(),
+                     private val cursoService: CursoService,
+                     private val usuarioService : UsuarioService
+                     ){
 //
 //    init {
 //        val topico1 = Topico(
@@ -67,15 +68,20 @@ class TopicoService (private var topicos: List<Topico> = ArrayList()){
         return topicos
     }
 
-    fun buscarPorId(id: Int): Topico {
+    fun buscarPorId(id: Long): Topico {
         return topicos.stream().filter({
             t -> t.id == id
         }).findFirst().get()
 
     }
 
-    @PostMapping
-    fun cadastrar(topico: Topico){
-        topicos.plus(topico)
+    fun cadastrar(dto: NovoTopicoDto){
+        topicos = topicos.plus(Topico(
+            id = topicos.size.toLong()+1,
+            titulo = dto.titulo,
+            mensagem = dto.mensagem,
+            curso = cursoService.buscaPorId(dto.idCurso),
+            autor = usuarioService.buscaPorId(dto.idAutor)
+        ))
     }
 }

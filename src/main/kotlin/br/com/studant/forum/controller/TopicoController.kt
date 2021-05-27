@@ -1,5 +1,6 @@
 package br.com.studant.forum.controller
 
+import br.com.studant.forum.dto.NovoTopicoDto
 import br.com.studant.forum.model.Curso
 import br.com.studant.forum.model.Topico
 import br.com.studant.forum.model.Usuario
@@ -17,13 +18,13 @@ class TopicoController(private val service: TopicoService) {
     }
 
     @GetMapping("/{id}")
-    fun buscarPorId(@PathVariable id: Int) : Topico {
+    fun buscarPorId(@PathVariable id: Long) : Topico {
         return service.buscarPorId(id)
     }
 
     @PostMapping
-    fun cadastrar(@RequestBody topico: Topico){
-        service.cadastrar(topico)
+    fun cadastrar(@RequestBody dto: NovoTopicoDto){
+        service.cadastrar(dto)
     }
 
 }
