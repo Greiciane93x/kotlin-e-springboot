@@ -3,3 +3,8 @@
 * Está sendo utilizado DTOs para representar dados da API 
 * Também utiliza Mappers para conversão DTO para Domínio <br/> 
 * Faz tratamento de erros 
+# Rotas <br/> 
+* Post
+* Get 
+* Delete 
+* Put 
